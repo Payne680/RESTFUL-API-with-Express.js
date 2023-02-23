@@ -23,9 +23,9 @@ app.use(function (req, res, next){
   }
 })
 
-// app.use(function(req, res, next){
-//   console.log(`${new Date().toTimeString()}   ${req.originalUrl}`)
-// })
+app.use(function(req, res, next){
+  console.log(`${new Date().toTimeString()}   ${req.originalUrl}`)
+})
 
 app.get("/users", getAllUsers);
 app.post("/users", createUser);
