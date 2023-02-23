@@ -9,7 +9,23 @@ const {
 } = require("./users");
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+
+const API_KEYS =["1","2","3","4","5"]
+
+app.use(function (req, res, next){
+  const {apiKey} = req.query;
+  const key = req.get("x-api-key")
+  if(API_KEYS.includes(apiKey) || API_KEYS.includes(key)) {
+    next();
+  }else {
+    res.sendStatus(403);
+  }
+})
+
+// app.use(function(req, res, next){
+//   console.log(`${new Date().toTimeString()}   ${req.originalUrl}`)
+// })
 
 app.get("/users", getAllUsers);
 app.post("/users", createUser);
