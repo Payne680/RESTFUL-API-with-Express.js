@@ -7,6 +7,22 @@ const {
   patchOnUser,
   deleteOneUser,
 } = require("./users");
+const {
+  getAllDrinks,
+  createDrink,
+  getOneDrink,
+  updateOneDrink,
+  patchOneDrink,
+  deleteOneDrink,
+} = require("./drinks");
+const {
+  getAllCategories,
+  createCategory,
+  getOneCategory,
+  updateOneCategory,
+  patchOneCategory,
+  deleteOneCategory,
+} = require("./category");
 
 const app = express();
 app.use(express.json());
@@ -23,16 +39,30 @@ app.use(function (req, res, next){
   }
 })
 
-app.use(function(req, res, next){
-  console.log(`${new Date().toTimeString()}   ${req.originalUrl}`)
-})
+// app.use(function(req, res, next){
+//   console.log(`${new Date().toTimeString()}   ${req.originalUrl}`)
+// })
 
 app.get("/users", getAllUsers);
 app.post("/users", createUser);
 app.get("/users/:id", getOneUser);
 app.put("/users/:id", updateOneUser);
 app.patch("/users/:id", patchOnUser);
-app.patch("/users/:id", deleteOneUser);
+app.delete("/users/:id", deleteOneUser);
+
+app.get("/drinks", getAllDrinks);
+app.post("/drinks", createDrink);
+app.get("/drinks/:id", getOneDrink);
+app.put("/drinks/:id", updateOneDrink);
+app.patch("/drinks/:id", patchOneDrink);
+app.delete("/drinks/:id", deleteOneDrink);
+
+app.get("/category", getAllCategories);
+app.post("/category", createCategory);
+app.get("/category/:id", getOneCategory);
+app.put("/category/:id", updateOneCategory);
+app.patch("/category/:id", patchOneCategory);
+app.delete("/category/:id", deleteOneCategory);
 
 app.listen(8080, function () {
   console.log("Running on port 8080")

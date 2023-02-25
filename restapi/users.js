@@ -1,5 +1,4 @@
 const db = require("./db");
-const { writeJson, readRequestData, getIdFromUrl } = require("./utils");
 
 function getAllUsers(req, res) {
   const users = db.getUsers();
@@ -29,7 +28,7 @@ async function updateOneUser(req, res) {
     db.saveUsers(users);
     res.json(users[index]);
   } else {
-    res.status(404).json( { status: "NOT_FOUND" });
+    res.status(404).json({ status: "NOT_FOUND" });
   }
 }
 
@@ -48,7 +47,7 @@ async function patchOnUser(req, res) {
   const id = +req.params.id;
   const data = req.body;
   if (!data) {
-    return res.json({ error: "User data missing" }, 403);
+    return res.status(403).json ({ error: "User data missing" });
   }
   const users = db.getUsers();
   const index = users.findIndex((user) => user.id === id);

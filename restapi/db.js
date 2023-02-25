@@ -3,6 +3,7 @@ const path = require("path");
 
 const DB_FILE = path.join(__dirname, "./db.json");
 const DRINK_DB_FILE = path.join(__dirname, "./drinks.db.json");
+const CATEGORY_DB_FILE = path.join(__dirname, "./category.db.json");
 
 function getUsers() {
   try {
@@ -42,6 +43,25 @@ function saveDrinks(drinks = []) {
   }
 }
 
-const db = { saveUsers, getUsers, getDrinks, saveDrinks }
+function getCategories() {
+  try {
+    const data = readFileSync(CATEGORY_DB_FILE) || "[]";
+    return JSON.parse(data);
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}
+
+function saveCategories(drinks = []) {
+  try {
+    const data = JSON.stringify(drinks, null, 4);
+    writeFileSync(CATEGORY_DB_FILE, data);
+  } catch (e) {
+    throw new Error("Database write error");
+  }
+}
+
+const db = { saveUsers, getUsers, getDrinks, saveDrinks, getCategories, saveCategories }
 
 module.exports = db;
