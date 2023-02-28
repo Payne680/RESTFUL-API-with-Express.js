@@ -1,23 +1,27 @@
 [
     {
-        "name": "Coco Melon, paw paw",
-        "ingredients": [
-            "Cocoa",
-            "Melon",
-            "banana",
-            "orange",
-            "grapes",
-            "mangos"
-        ],
-        "id": 1
+        "name": "Cocktail",
+        "catId": "1",
+        "id": 1677503783797
     },
     {
-        "name": "bear",
-        "ingredients": [
-            "orange",
-            "pinapples",
-            "grapes"
-        ],
-        "id": 1677349066860
+        "name": "Champagne",
+        "catId": "1",
+        "id": 1677503803307
+    },
+    {
+        "name": "Jin",
+        "catId": "1",
+        "id": 1677504141150
+    },
+    {
+        "name": "Whiskey",
+        "catId": "1",
+        "id": 1677504241582
+    },
+    {
+        "name": "Beer",
+        "catId": "1",
+        "id": 1677504253678
     }
 ]

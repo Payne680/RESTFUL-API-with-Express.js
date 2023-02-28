@@ -25,14 +25,14 @@ async function createDrink(req, res) {
 }
 async function updateOneDrink(req, res) {
   const id = +req.params.id;
-  const { name, ingredients, userId, description, recipe } = req.body;
-  if (!name || !ingredients || !userId || !description, recipe) {
+  const { name, desc, src, ingredients } = req.body;
+  if (!name || !desc || !src || !ingredients) {
     return res.status(403).json({ error: "User data missing" });
   }
   const drinks = db.getDrinks();
   const index = drinks.findIndex((user) => user.id === id);
   if (index > -1) {
-    drinks.splice(index, 1, { name, ingredients, userId, description, recipe, id });
+    drinks.splice(index, 1, { name, desc, src, ingredients, id });
     db.saveDrinks(drinks);
     res.json(drinks[index]);
   } else {

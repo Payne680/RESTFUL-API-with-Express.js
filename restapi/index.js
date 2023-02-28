@@ -1,4 +1,5 @@
-const express = require("express")
+const express = require("express");
+const cors = require("cors");
 const {
   getAllUsers,
   createUser,
@@ -26,15 +27,16 @@ const {
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-const API_KEYS =["1","2","3","4","5"]
+const API_KEYS = ["1", "2", "3", "4", "5"]
 
-app.use(function (req, res, next){
-  const {apiKey} = req.query;
+app.use(function (req, res, next) {
+  const { apiKey } = req.query;
   const key = req.get("x-api-key")
-  if(API_KEYS.includes(apiKey) || API_KEYS.includes(key)) {
+  if (API_KEYS.includes(apiKey) || API_KEYS.includes(key)) {
     next();
-  }else {
+  } else {
     res.sendStatus(403);
   }
 })
@@ -64,8 +66,8 @@ app.put("/category/:id", updateOneCategory);
 app.patch("/category/:id", patchOneCategory);
 app.delete("/category/:id", deleteOneCategory);
 
-app.listen(8080, function () {
-  console.log("Running on port 8080")
+app.listen(8000, function () {
+  console.log("Running on port 8000")
 });
 
 // function registerRoute(routePrefix, handler, req, res) {
